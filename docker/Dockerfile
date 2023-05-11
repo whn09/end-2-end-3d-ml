@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build 
 
 
 # Reinstall torch
-RUN pip install --upgrade --force-reinstall  torch==1.8.1 torchvision==0.9.1 cython boto3
+# RUN pip install --upgrade --force-reinstall  torch==1.8.1 torchvision==0.9.1 cython boto3
+RUN pip install --upgrade --force-reinstall  torch==1.8.1+cu111 torchvision==0.9.1+cu111 cython boto3 -f https://download.pytorch.org/whl/torch_stable.html
 
 # Install MMCV, MMDetection and MMSegmentation
 RUN export MKL_SERVICE_FORCE_INTEL=1 && pip install mmcv-full==1.4.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.1/index.html
@@ -51,6 +52,8 @@ ENV SAGEMAKER_PROGRAM /opt/ml/code/train.py
 
 RUN export MASTER_ADDR=algo-1
 RUN export MASTER_PORT=12345
+
+RUN conda install -y geos
 
 # Starts PyTorch distributed framework
 ENTRYPOINT ["bash", "-m", "start_with_right_hostname.sh"]
