@@ -58,7 +58,7 @@ os.system('ls /opt/ml/input/data/train')
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a 3D detector')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('--config', help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument('--batch-size', help='training batch size', default=1)
     parser.add_argument('--epochs', type=int, default=5)
@@ -168,6 +168,8 @@ def main():
     elif args.resume is not None:
         cfg.resume = True
         cfg.load_from = args.resume
+
+    print('cfg:', cfg)
 
     # build the runner from config
     if 'runner_type' not in cfg:

@@ -101,6 +101,7 @@ optim_wrapper = dict(
     optimizer=dict(type='AdamW', lr=lr, weight_decay=0.),
     clip_grad=dict(max_norm=35, norm_type=2),
 )
+# auto_scale_lr = dict(enable=True, base_batch_size=4)
 
 # training schedule for 1x
 train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=80, val_interval=2)
