@@ -27,8 +27,20 @@ then
     exit 255
 fi
 
+if [[ $region =~ ^cn.* ]]
+then
+    fullname="${account}.dkr.ecr.${region}.amazonaws.com.cn/${image}:${tag}"
+else
+    fullname="${account}.dkr.ecr.${region}.amazonaws.com/${image}:${tag}"
+fi
 
-fullname="${account}.dkr.ecr.${region}.amazonaws.com/${image}:${tag}"
+# Get the login command from ECR and execute it directly
+if [[ $region =~ ^cn.* ]]
+then
+    $(aws ecr get-login --region ${region} --registry-ids 727897471807 --no-include-email)
+else
+    $(aws ecr get-login --region ${region} --registry-ids 763104351884 --no-include-email)
+fi
 
 # If the repository doesn't exist in ECR, create it.
 aws ecr describe-repositories --region ${region} --repository-names "${image}" > /dev/null 2>&1
