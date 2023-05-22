@@ -1,6 +1,7 @@
 # # Copyright 2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
-FROM 763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:1.13.1-gpu-py39-cu117-ubuntu20.04-sagemaker
+FROM 763104351884.dkr.ecr.us-east-1.amazonaws.com/pytorch-training:1.13.1-gpu-py39
+# FROM 727897471807.dkr.ecr.cn-northwest-1.amazonaws.com.cn/pytorch-training:1.13.1-gpu-py39
 
 LABEL authors="henanwan@amazon.com"
 
