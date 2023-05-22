@@ -9,6 +9,7 @@ data_root = '/opt/ml/input/data/train/camera_lidar_semantic_bboxes/'
 class_names = ['Car']
 point_cloud_range = [0, -40, -5, 70, 40, 3]
 input_modality = dict(use_lidar=True, use_camera=False)
+metainfo = dict(classes=class_names)
 backend_args = None
 
 db_sampler = dict(
